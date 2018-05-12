@@ -12,9 +12,13 @@ int main()
 {
 	PrintIntro();
 
-	GetGuessAndPrintBack();
+	// Loop for the number of turns asking for guesses.
+	constexpr int NUMBER_OF_TURNS = 5;
+	for (int tries = 1; tries <= NUMBER_OF_TURNS; tries++) {
+		GetGuessAndPrintBack();
+		cout << endl;
+	}
 
-	cout << endl;
 	return 0;
 }
 
@@ -30,9 +34,10 @@ void PrintIntro()
 	return;
 }
 
-// Get a guess from the player.
+// Get a guess from the player and repeat it back to them.
 string GetGuessAndPrintBack()
 {
+	// Get the guess.
 	cout << "Enter your guess: ";
 
 	string Guess = "";
