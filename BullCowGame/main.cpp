@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 // Prototypes.
 void PrintIntro();
 void PlayGame();
-string GetGuess();
+std::string GetGuess();
 bool AskToPlayAgain();
 
 // The entry point for our application.
@@ -28,9 +26,9 @@ void PrintIntro()
 {
 	constexpr int WORD_LENGTH = 5;
 
-	cout << "Welcome to Bulls and Cows, a fun word game.\n";
-	cout << "Can you guess the " << WORD_LENGTH << " letter isogram I'm thinking of?\n";
-	cout << endl;
+	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
+	std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram I'm thinking of?\n";
+	std::cout << std::endl;
 
 	return;
 }
@@ -41,20 +39,20 @@ void PlayGame()
 	constexpr int NUMBER_OF_TURNS = 5;
 
 	for (int tries = 1; tries <= NUMBER_OF_TURNS; tries++) {
-		string Guess = GetGuess();
+		std::string Guess = GetGuess();
 
-		cout << "Your guess was: " << Guess << endl;
-		cout << endl;
+		std::cout << "Your guess was: " << Guess << std::endl;
+		std::cout << std::endl;
 	}
 }
 
 // Get a guess from the player and repeat it back to them.
-string GetGuess()
+std::string GetGuess()
 {
-	cout << "Enter your guess: ";
+	std::cout << "Enter your guess: ";
 
-	string Guess = "";
-	getline(cin, Guess);
+	std::string Guess = "";
+	std::getline(std::cin, Guess);
 
 	return Guess;
 }
@@ -62,10 +60,10 @@ string GetGuess()
 // Ask the player if they want to play again.
 bool AskToPlayAgain()
 {
-	cout << "Do you want to play again?";
+	std::cout << "Do you want to play again (y/n)? ";
 	
-	string Response = "";
-	getline(cin, Response);
+	std::string Response = "";
+	std::getline(std::cin, Response);
 
 	return (Response[0] == 'y' || Response[0] == 'Y');
 }
