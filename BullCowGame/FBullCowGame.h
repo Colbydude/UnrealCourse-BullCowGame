@@ -3,6 +3,8 @@
 
 class FBullCowGame {
 public:
+	FBullCowGame();
+
 	int GetCurrentTry() const;
 	int GetMaxTries() const;
 	bool IsGameWon() const;
@@ -11,6 +13,6 @@ public:
 	void Reset(); // TODO: Make a more rich return value.
 
 private:
-	int MyCurrentTry = 1;
-	int MyMaxTries = 5;
+	int MyCurrentTry;
+	int MyMaxTries;
 };
