@@ -7,13 +7,14 @@ using namespace std;
 void PrintIntro();
 void PlayGame();
 string GetGuess();
+bool AskToPlayAgain();
 
 // The entry point for our application.
 int main()
 {
 	PrintIntro();
 	PlayGame();
-
+	AskToPlayAgain();
 	return 0;
 }
 
@@ -51,4 +52,15 @@ string GetGuess()
 	getline(cin, Guess);
 
 	return Guess;
+}
+
+// Ask the player if they want to play again.
+bool AskToPlayAgain()
+{
+	cout << "Do you want to play again? ";
+	
+	string Response = "";
+	getline(cin, Response);
+
+	return (Response[0] == 'y' || Response[0] == 'Y');
 }
