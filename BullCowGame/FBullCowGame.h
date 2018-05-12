@@ -10,5 +10,6 @@ public:
 	bool CheckGuessValidity(std::string); // TODO: Make a more rich return value.
 
 private:
-
+	int MyCurrentTry = 1;
+	int MyMaxTries = 5;
 };
