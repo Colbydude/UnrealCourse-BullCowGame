@@ -15,7 +15,7 @@ using int32 = int;
 // Prototypes.
 void PrintIntro();
 void PlayGame();
-FText GetGuess();
+FText GetValidGuess();
 bool AskToPlayAgain();
 
 // Instantiate a new game.
@@ -53,34 +53,54 @@ void PlayGame()
 
 	// TODO: Change from FOR to WHILE loop once we are validating tries.
 	for (int32 tries = 1; tries <= MaxTries; tries++) {
-		FText Guess = GetGuess();
-
-		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
+		FText Guess = GetValidGuess();
 
 		// Submit valid guess to the game, and receive counts.
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
 		
 		// Print number of bulls and cows.
 		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << ". Cows = " << BullCowCount.Cows << '.';
+		std::cout << ". Cows = " << BullCowCount.Cows << '.' << std::endl;
 		std::cout << std::endl;
 	}
 
 	// TODO: Add a game summary.
 }
 
-// Get a guess from the player and repeat it back to them.
-// TODO: Check for valid guess.
-FText GetGuess()
+// Loop continually until the player enters a valid guess.
+FText GetValidGuess()
 {
-	int CurrentTry = BCGame.GetCurrentTry();
+	EGuessStatus Status = EGuessStatus::Invalid_Status;
 
-	std::cout << "Try " << CurrentTry << ". Enter your guess: ";
+	do {
+		// Get a guess form the player.
+		int CurrentTry = BCGame.GetCurrentTry();
 
-	FText Guess = "";
-	std::getline(std::cin, Guess);
+		std::cout << "Try " << CurrentTry << ". Enter your guess: ";
 
-	return Guess;
+		FText Guess = "";
+		std::getline(std::cin, Guess);
+
+		// Check guess validity.
+		Status = BCGame.CheckGuessValidity(Guess);
+
+		switch (Status)
+		{
+		case EGuessStatus::Not_Isogram:
+			std::cout << "Please enter a word without repeating letters." << std::endl;
+			break;
+		case EGuessStatus::Not_Lowercase:
+			std::cout << "Please enter all lowercase letters." << std::endl;
+			break;
+		case EGuessStatus::Wrong_Length:
+			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word." << std::endl;
+			break;
+		default:
+			return Guess;
+		}
+
+		std::cout << std::endl;
+	} while (Status != EGuessStatus::OK);
 }
 
 // Ask the player if they want to play again.
