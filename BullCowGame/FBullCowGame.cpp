@@ -7,25 +7,25 @@ FBullCowGame::FBullCowGame()
 
 // Getters.
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 bool FBullCowGame::IsGameWon() const { return false; }
 
 // Functions.
-bool FBullCowGame::CheckGuessValidity(FString)
+bool FBullCowGame::CheckGuessValidity(FString) const
 {
 	return false;
 }
 
 void FBullCowGame::Reset()
 {
+	const FString HIDDEN_WORD = "planet";
 	constexpr int32 MAX_TRIES = 8;
-	MyMaxTries = MAX_TRIES;
-
-	const FString HIDDEN_WORD = "ant";
-	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
-	
+	MyHiddenWord = HIDDEN_WORD;
+	MyMaxTries = MAX_TRIES;
+
 	return;
 }
 
@@ -39,7 +39,7 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 	FBullCowCount BullCowCount;
 
 	// Loop through all letters in the guess.
-	int32 HiddenWordLength = MyHiddenWord.length();
+	int32 HiddenWordLength = GetHiddenWordLength();
 	for (int32 i = 0; i < HiddenWordLength; i++) {
 		// Compare letters against the hidden word.
 		for (int32 j = 0; j < HiddenWordLength; j++) {
