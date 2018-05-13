@@ -53,7 +53,9 @@ void PlayGame()
 
 	// TODO: Change from FOR to WHILE loop once we are validating tries.
 	for (int32 tries = 1; tries <= MaxTries; tries++) {
-		FText Guess = GetGuess();	// TODO: Make loop checking valid.
+		FText Guess = GetGuess();
+
+		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
 
 		// Submit valid guess to the game, and receive counts.
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
@@ -68,6 +70,7 @@ void PlayGame()
 }
 
 // Get a guess from the player and repeat it back to them.
+// TODO: Check for valid guess.
 FText GetGuess()
 {
 	int CurrentTry = BCGame.GetCurrentTry();
