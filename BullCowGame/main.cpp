@@ -51,8 +51,9 @@ void PlayGame()
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 
-	// TODO: Change from FOR to WHILE loop once we are validating tries.
-	for (int32 tries = 1; tries <= MaxTries; tries++) {
+	// Loop asking for guess while the game
+	// is NOT won and there are still tries remaining.
+	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= BCGame.GetMaxTries()) {
 		FText Guess = GetValidGuess();
 
 		// Submit valid guess to the game, and receive counts.
