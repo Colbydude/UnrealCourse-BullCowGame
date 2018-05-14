@@ -31,7 +31,7 @@ public:
 	bool IsGameWon() const;
 	
 	void Reset(); // TODO: Make a more rich return value.
-	FBullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitValidGuess(FString);
 
 private:
 	int32 MyCurrentTry;
