@@ -40,4 +40,5 @@ private:
 	int32 MyMaxTries;
 
 	bool IsIsogram(FString) const;
+	bool IsLowercase(FString) const;
 };
