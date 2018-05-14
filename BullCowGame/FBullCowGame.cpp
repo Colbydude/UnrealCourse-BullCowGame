@@ -1,6 +1,8 @@
+#pragma once
+#include <map>
 #include "FBullCowGame.h"
 
-#include <map>
+// To make syntax Unreal friendly.
 #define TMap std::map
 
 FBullCowGame::FBullCowGame() { Reset();} // Default constructor.
@@ -9,6 +11,7 @@ int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
+// Gets the max number of tries from a list of word lengths.
 int32 FBullCowGame::GetMaxTries() const
 {
 	TMap<int32, int32> WordLengthToMaxTries{ {3, 4}, {4, 7}, {5, 10}, {6, 15}, {7, 20} };
@@ -16,6 +19,7 @@ int32 FBullCowGame::GetMaxTries() const
 	return WordLengthToMaxTries[GetHiddenWordLength()];
 }
 
+// Checks the validity of a guess and returns the status of it.
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	// If the guess isn't an isogram
@@ -23,7 +27,6 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 		return EGuessStatus::Not_Isogram;
 	}
 	// If the guess isn't all lowercase
-	// TODO: write function
 	else if (!IsLowercase(Guess)) {
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -36,9 +39,10 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	}
 }
 
+// Resets the game to its initial values.
 void FBullCowGame::Reset()
 {
-	const FString HIDDEN_WORD = "plane";
+	const FString HIDDEN_WORD = "plane"; // This MUST be an isogram.
 	MyHiddenWord = HIDDEN_WORD;
 
 	bGameIsWon = false;

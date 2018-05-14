@@ -4,11 +4,12 @@
  * user interaction. For game logic see the FBullCowGame class.
  */
 
+#pragma once
 #include <iostream>
 #include <string>
-
 #include "FBullCowGame.h"
 
+// To make syntax Unreal friendly.
 using FText = std::string;
 using int32 = int;
 
@@ -19,7 +20,7 @@ FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
 
-// Instantiate a new game.
+// Instantiate a new game, which we re-use across plays.
 FBullCowGame BCGame;
 
 // The entry point for our application.
@@ -33,6 +34,7 @@ int main()
 		bWantsToPlayAgain = AskToPlayAgain();
 	} while (bWantsToPlayAgain);
 
+	// Exit the application.
 	return 0;
 }
 
@@ -54,7 +56,7 @@ void PrintIntro()
 	return;
 }
 
-// Loop for the number of tries asking for guesses.
+// Plays a single game to completion.
 void PlayGame()
 {
 	BCGame.Reset();
