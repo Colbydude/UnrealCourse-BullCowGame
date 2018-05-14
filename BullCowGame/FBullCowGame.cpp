@@ -15,10 +15,12 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	// If the guess isn't an isogram
+	// TODO: write function
 	if (false) {
 		return EGuessStatus::Not_Isogram;
 	}
 	// If the guess isn't all lowercase
+	// TODO: write function
 	else if (false) {
 		return EGuessStatus::Not_Lowercase;
 	}

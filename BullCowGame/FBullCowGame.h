@@ -24,7 +24,7 @@ class FBullCowGame
 public:
 	FBullCowGame();
 
-	EGuessStatus CheckGuessValidity(FString) const; // TODO: Make a more rich return value.
+	EGuessStatus CheckGuessValidity(FString) const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
 	int32 GetMaxTries() const;
